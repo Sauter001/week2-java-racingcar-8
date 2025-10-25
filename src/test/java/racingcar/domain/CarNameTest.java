@@ -1,6 +1,7 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ public class CarNameTest {
         // when
         CarName carName = new CarName(carNameStr);
         // then
-        Assertions.assertEquals(carNameStr, carName.toString());
+        assertEquals(carNameStr, carName.toString());
     }
 
     @Test
@@ -27,7 +28,7 @@ public class CarNameTest {
         // when
         CarName carName = new CarName(carNameStr);
         // then
-        Assertions.assertEquals(trimmedCarName, carName.toString());
+        assertEquals(trimmedCarName, carName.toString());
     }
 
     @ParameterizedTest
@@ -37,20 +38,20 @@ public class CarNameTest {
         // given & when
         CarName carName = new CarName(carNameStr);
         // then
-        Assertions.assertEquals(carNameStr, carName.toString());
+        assertEquals(carNameStr, carName.toString());
     }
 
     // 예외 상황
     @Test
     @DisplayName("6자 이상 이름 생성 실패")
     public void invalidNameLengthTest() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CarName("pikachu"));
+        assertThrows(IllegalArgumentException.class, () -> new CarName("pikachu"));
     }
 
     @ParameterizedTest
     @DisplayName("빈 문자열 생성 실패")
     @ValueSource(strings = {"", " ", "   ", "    "})
     public void emptyNameLengthTest(String name) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CarName(name));
+        assertThrows(IllegalArgumentException.class, () -> new CarName(name));
     }
 }

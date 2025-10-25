@@ -13,6 +13,12 @@ public class CarList {
         this.carList = convertToCarList(carsInput);
     }
 
+    public void moveAll() {
+        for (Car car : carList) {
+            car.move();
+        }
+    }
+
     private List<Car> convertToCarList(String carsInput) {
         List<String> carNames = Arrays.asList(carsInput.split(","));
         List<Car> carList = new ArrayList<>();

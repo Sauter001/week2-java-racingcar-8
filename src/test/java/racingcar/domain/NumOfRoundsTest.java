@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +11,7 @@ public class NumOfRoundsTest {
     @DisplayName("정상 객체 생성")
     void numOfRounds() {
         NumOfRounds numOfRounds = new NumOfRounds("12");
-        Assertions.assertEquals(12, numOfRounds.toInteger());
+        assertEquals(12, numOfRounds.toInteger());
     }
 
     // 예외 상황
@@ -19,18 +19,18 @@ public class NumOfRoundsTest {
     @ValueSource(strings = {"abc", "ddd123", "12e"})
     @DisplayName("숫자가 아닌 입력 예외")
     void nonNumberTest(String nonNumber) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new NumOfRounds(nonNumber));
+        assertThrows(IllegalArgumentException.class, () -> new NumOfRounds(nonNumber));
     }
 
     @Test
     @DisplayName("소수 입력 예외")
     void decimalTest() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new NumOfRounds("1.23"));
+        assertThrows(IllegalArgumentException.class, () -> new NumOfRounds("1.23"));
     }
 
     @Test
     @DisplayName("INT 범위 초과")
     void integerOutOfRangeTest() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new NumOfRounds("23000000000"));
+        assertThrows(IllegalArgumentException.class, () -> new NumOfRounds("23000000000"));
     }
 }
