@@ -6,7 +6,7 @@ import racingcar.dto.InputDto;
 import racingcar.view.View;
 
 public class RacingController {
-    private View view;
+    private final View view;
 
     public RacingController(View view) {
         this.view = view;
