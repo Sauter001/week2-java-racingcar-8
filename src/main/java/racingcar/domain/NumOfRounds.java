@@ -20,4 +20,8 @@ public class NumOfRounds {
 
         return roundValue;
     }
+
+    public int toInteger() {
+        return numOfRounds;
+    }
 }
