@@ -21,6 +21,14 @@ public class CarsTest {
         assertEquals(cars.getRaceResult(), dtos);
     }
 
+    @Test
+    @DisplayName("5글자 차 이름 입력")
+    void carNamesExactly5() {
+        Cars cars = new Cars("apple,grape,abcde");
+        List<CarDto> dtos = List.of(new CarDto("apple", 0), new CarDto("grape", 0), new CarDto("abcde", 0));
+        assertEquals(cars.getRaceResult(), dtos);
+    }
+
     // 예외 테스트
     @Test
     @DisplayName("입력된 차가 없음")
@@ -41,7 +49,7 @@ public class CarsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi,,jun", "pobi, ,jun", ",pobi,jun", "pobi,jun,", "pobi,jun, "})
+    @ValueSource(strings = {"pobi,,jun", "pobi, ,jun", ",pobi,jun", "pobi,jun,", "pobi,jun, ", ","})
     @DisplayName("쉼표 사이의 빈 문자열")
     void blankBetweenCommas(String input) {
         assertThrows(IllegalArgumentException.class, () -> new Cars(input));
