@@ -125,3 +125,21 @@ jun : -----
 ```text
 최종 우승자 : pobi, jun
 ```
+
+## 폴더 구조
+```text
+├───main
+│   └───java
+│       └───racingcar
+│           ├───controller
+│           ├───domain
+│           ├───dto
+│           ├───exception
+│           │   ├───common
+│           │   └───domain
+│           └───view
+└───test
+    └───java
+        └───racingcar
+            └───domain
+```
