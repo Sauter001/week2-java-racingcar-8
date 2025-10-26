@@ -1,20 +1,30 @@
 package racingcar.domain;
 
 import racingcar.dto.CarDto;
+import racingcar.exception.ErrorMessages;
 import racingcar.exception.common.ListEmptyException;
 import racingcar.exception.domain.CarNameAlreadyExistsException;
-import racingcar.exception.domain.CarNameEmptyException;
+import racingcar.parser.CarNameParser;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 public class Cars {
-    private List<Car> carList;
+    private final List<Car> carList;
 
     public Cars(String carsInput) {
-        this.carList = convertToCarList(carsInput);
+        CarNameParser carNameParser = new CarNameParser();
+        List<String> carNames = carNameParser.parseCars(carsInput);
+        this.carList = createCars(carNames);
+    }
+
+    private List<Car> createCars(List<String> carNames) {
+        if (carNames.isEmpty()) {
+            throw new ListEmptyException("CarNames");
+        }
+
+        checkCarNameDuplication(carNames);
+        return carNames.stream().map(Car::new).toList();
     }
 
     public void moveAll() {
@@ -31,38 +41,12 @@ public class Cars {
         return carList.stream().map(Car::toDto).toList();
     }
 
-    private int findMaxPosition(List<CarDto> carDtos) {
-        return carDtos.stream().mapToInt(CarDto::position).max().orElse(0);
-    }
+    private void checkCarNameDuplication(List<String> carNames) {
+        HashSet<String> carNameSet = new HashSet<>(carNames);
 
-    private List<Car> convertToCarList(String carsInput) {
-        List<String> carNames = Arrays.asList(carsInput.split(","));
-        List<Car> carList = new ArrayList<>();
-        HashSet<String> carNameSet = new HashSet<>();
-
-        // 자동차 입력이 ,로 끝나면 예외 처리
-        if (carsInput.endsWith(",")) {
-            throw new CarNameEmptyException();
-        }
-
-        if (carNames.isEmpty()) {
-            throw new ListEmptyException("CarNames");
-        }
-
-        for (String carName : carNames) {
-            String trimmedCarName = carName.trim();
-
-            checkCarNameDuplication(carNameSet, trimmedCarName);
-            carList.add(new Car(trimmedCarName));
-            carNameSet.add(trimmedCarName);
-        }
-
-        return carList;
-    }
-
-    private void checkCarNameDuplication(HashSet<String> carNameSet, String trimmedCarName) {
-        if (carNameSet.contains(trimmedCarName)) {
-            throw new CarNameAlreadyExistsException(trimmedCarName);
+        // 중복 자동차명이 존재하면 예외
+        if (carNameSet.size() != carNames.size()) {
+            throw new CarNameAlreadyExistsException(ErrorMessages.CAR_NAME_DUPLICATE);
         }
     }
 }
