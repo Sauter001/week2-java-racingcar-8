@@ -18,6 +18,10 @@ public class Cars {
         this.carList = createCars(carNames);
     }
 
+    public RoundResult captureCurrentState() {
+        return new RoundResult(carList.size(), this.getRaceResult());
+    }
+
     private List<Car> createCars(List<String> carNames) {
         if (carNames.isEmpty()) {
             throw new ListEmptyException("CarNames");

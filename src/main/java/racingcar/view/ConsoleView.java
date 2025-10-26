@@ -30,11 +30,15 @@ public class ConsoleView implements View {
 
         System.out.println();
         System.out.println("실행 결과");
-        raceResultDto.forEachRound(
-                round -> printRacingProgress(round.carStates())
-        );
+        printAllRound(roundResults);
 
         printWinners(winners);
+    }
+
+    private void printAllRound(List<RoundResultDto> roundResults) {
+        for (RoundResultDto roundResultDto : roundResults) {
+            printSingleRound(roundResultDto);
+        }
     }
 
     private void printWinners(List<CarDto> winners) {
@@ -42,8 +46,8 @@ public class ConsoleView implements View {
         System.out.printf("최종 우승자 : %s\n", String.join(", ", carNames));
     }
 
-    private void printRacingProgress(List<CarDto> carDtos) {
-        for (CarDto carDto : carDtos) {
+    private void printSingleRound(RoundResultDto roundResultDto) {
+        for (CarDto carDto : roundResultDto.carStates()) {
             printCarDistance(carDto);
         }
         System.out.println();

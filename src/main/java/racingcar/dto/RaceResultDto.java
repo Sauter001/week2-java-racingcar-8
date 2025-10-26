@@ -7,7 +7,4 @@ public record RaceResultDto(
         List<RoundResultDto> roundResults,
         List<CarDto> winners
 ) {
-    public void forEachRound(Consumer<RoundResultDto> consumer) {
-        this.roundResults.forEach(consumer);
-    }
 }

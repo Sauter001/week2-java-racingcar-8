@@ -21,11 +21,7 @@ public class Race {
 
     private void runRound(RaceResult raceResult) {
         cars.moveAll();
-        RoundResults roundResults = captureRoundResults();
-        raceResult.addRoundResult(roundResults.toDto());
-    }
-
-    private RoundResults captureRoundResults() {
-        return new RoundResults(cars.size(), cars.getRaceResult());
+        RoundResult roundResult = cars.captureCurrentState();
+        raceResult.addRoundResult(roundResult);
     }
 }
