@@ -1,12 +1,25 @@
 package racingcar.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.dto.CarDto;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarsTest {
+    // 정상 테스트
+    @Test
+    @DisplayName("공백 포함된 입력")
+    void carNamesIncludingBlank() {
+        Cars cars = new Cars("pobi, woni,  jun");
+        List<CarDto> dtos = List.of(new CarDto("pobi", 0), new CarDto("woni", 0), new CarDto("jun", 0));
+        assertEquals(cars.getRaceResult(), dtos);
+    }
 
     // 예외 테스트
     @Test
