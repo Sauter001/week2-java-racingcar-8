@@ -18,7 +18,7 @@ public class RoundResults {
 
     private void validateSize(int numOfCars, List<CarDto> carStates) {
         if (numOfCars != Objects.requireNonNull(carStates).size()) {
-            throw new LengthInvalidException(ErrorMessages.RACING_CAR_NOT_ENOUGH);
+            throw new LengthInvalidException(ErrorMessages.RACING_CAR_COUNT_MISMATCH);
         }
     }
 

@@ -20,7 +20,7 @@ public class RaceResult {
 
     public void addRoundResult(RoundResultDto roundResult) {
         if (roundResults.size() >= numOfRounds) {
-            throw new LengthInvalidException(ErrorMessages.ROUND_FINISHED);
+            throw new LengthInvalidException(ErrorMessages.RACE_ALREADY_FINISHED);
         }
 
         roundResults.add(roundResult);

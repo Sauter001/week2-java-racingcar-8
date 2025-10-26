@@ -1,7 +1,9 @@
 package racingcar.exception.common;
 
+import racingcar.exception.ErrorMessages;
+
 public class NumberNotPositiveException extends IllegalArgumentException {
     public NumberNotPositiveException(int number) {
-        super(String.format("수 %d는 양수가 아닙니다.", number));
+        super(String.format(ErrorMessages.NUMBER_NOT_POSITIVE, number));
     }
 }
