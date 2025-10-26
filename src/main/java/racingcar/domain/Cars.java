@@ -27,15 +27,6 @@ public class Cars {
         return carList.size();
     }
 
-    public List<CarDto> findWinners() {
-        List<CarDto> carDtos = this.carList.stream().map(Car::toDto).toList();
-        int maxPosition = findMaxPosition(carDtos);
-
-        return carDtos.stream()
-                .filter(carDto -> carDto.position() == maxPosition)
-                .toList();
-    }
-
     public List<CarDto> getRaceResult() {
         return carList.stream().map(Car::toDto).toList();
     }
@@ -63,7 +54,7 @@ public class Cars {
 
             checkCarNameDuplication(carNameSet, trimmedCarName);
             carList.add(new Car(trimmedCarName));
-            carNameSet.add(carName);
+            carNameSet.add(trimmedCarName);
         }
 
         return carList;
