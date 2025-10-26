@@ -1,11 +1,27 @@
 package racingcar.domain;
 
-public class Race {
-    private CarList carList;
-    private NumOfRounds numOfRounds;
+import racingcar.dto.CarDto;
 
-    public Race(CarList carList, String numOfRounds) {
-        this.carList = carList;
+import java.util.List;
+
+public class Race {
+    private final Cars cars;
+    private final NumOfRounds numOfRounds;
+
+    public Race(Cars cars, String numOfRounds) {
+        this.cars = cars;
         this.numOfRounds = new NumOfRounds(numOfRounds);
+    }
+
+    public RaceResult start() {
+        RaceResult raceResult = new RaceResult(numOfRounds);
+
+        for (int i = 0; i < this.numOfRounds.toInteger(); ++i) {
+            cars.moveAll();
+            RoundResults roundResults = new RoundResults(cars.size(), cars.getRaceResult());
+            raceResult.addRoundResult(roundResults.toDto());
+        }
+
+        return raceResult;
     }
 }

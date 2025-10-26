@@ -1,15 +1,19 @@
 package racingcar.domain;
 
+import racingcar.dto.CarDto;
+import racingcar.exception.common.ListEmptyException;
 import racingcar.exception.domain.CarNameAlreadyExistsException;
 import racingcar.exception.domain.CarNameEmptyException;
-import racingcar.exception.common.ListEmptyException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
-public class CarList {
+public class Cars {
     private List<Car> carList;
 
-    public CarList(String carsInput) {
+    public Cars(String carsInput) {
         this.carList = convertToCarList(carsInput);
     }
 
@@ -17,6 +21,27 @@ public class CarList {
         for (Car car : carList) {
             car.move();
         }
+    }
+
+    public int size() {
+        return carList.size();
+    }
+
+    public List<CarDto> findWinners() {
+        List<CarDto> carDtos = this.carList.stream().map(Car::toDto).toList();
+        int maxPosition = findMaxPosition(carDtos);
+
+        return carDtos.stream()
+                .filter(carDto -> carDto.position() == maxPosition)
+                .toList();
+    }
+
+    public List<CarDto> getRaceResult() {
+        return carList.stream().map(Car::toDto).toList();
+    }
+
+    private int findMaxPosition(List<CarDto> carDtos) {
+        return carDtos.stream().mapToInt(CarDto::position).max().orElse(0);
     }
 
     private List<Car> convertToCarList(String carsInput) {

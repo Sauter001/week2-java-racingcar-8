@@ -1,7 +1,8 @@
 package racingcar.controller;
 
-import racingcar.domain.CarList;
+import racingcar.domain.Cars;
 import racingcar.domain.Race;
+import racingcar.domain.RaceResult;
 import racingcar.dto.InputDto;
 import racingcar.view.View;
 
@@ -15,7 +16,9 @@ public class RacingController {
     public void run() {
         InputDto inputDto = view.inputRacingInfo();
 
-        CarList carList = new CarList(inputDto.cars());
-        Race race = new Race(carList, inputDto.round());
+        Cars cars = new Cars(inputDto.cars());
+        Race race = new Race(cars, inputDto.round());
+        RaceResult raceResults = race.start();
+        view.printRacingResult(raceResults.toDto());
     }
 }
