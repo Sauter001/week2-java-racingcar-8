@@ -9,6 +9,10 @@ import racingcar.exception.common.LengthInvalidException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 경주 결과를 READ 및 INSERT 하기 위한 쿼리 객체
+ * Race 실행 중 결과를 수집하고, 완료 후 결과 조회 기능 제공
+ */
 public class RaceResult {
     private final List<RoundResultDto> roundResults;
     private final int numOfRounds;
