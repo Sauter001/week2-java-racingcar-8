@@ -6,6 +6,7 @@ import racingcar.exception.domain.CarNameLengthExceededException;
 import java.util.Objects;
 
 public class CarName {
+    private static final int CAR_NAME_MAX_LENGTH = 5;
     private final String name;
     public CarName(String name) {
         String trimmedName = name.trim();
@@ -18,7 +19,7 @@ public class CarName {
             throw new CarNameEmptyException();
         }
 
-        if (name.length() > 5) {
+        if (name.length() > CAR_NAME_MAX_LENGTH) {
             throw new CarNameLengthExceededException();
         }
     }

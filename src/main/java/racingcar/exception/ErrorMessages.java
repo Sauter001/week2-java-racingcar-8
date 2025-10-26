@@ -19,8 +19,4 @@ public class ErrorMessages {
     // === 일반 검증 관련 ===
     public static final String NUMBER_NOT_POSITIVE = "양수가 아닌 값입니다: %d";
     public static final String LIST_EMPTY = "%s이(가) 비어있습니다.";
-
-    // === 파싱 관련 ===
-    public static final String INVALID_INPUT_FORMAT = "입력 형식이 올바르지 않습니다.";
-    public static final String DELIMITER_NOT_FOUND = "구분자를 찾을 수 없습니다.";
 }
