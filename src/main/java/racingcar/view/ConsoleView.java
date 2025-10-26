@@ -8,7 +8,6 @@ import racingcar.dto.RoundResultDto;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class ConsoleView implements View {
     private static final String CARS_INPUT_PROMPT = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
@@ -31,10 +30,9 @@ public class ConsoleView implements View {
 
         System.out.println();
         System.out.println("실행 결과");
-        for (RoundResultDto roundResultDto : roundResults) {
-            printRacingProgress(roundResultDto.carStates());
-            System.out.println();
-        }
+        raceResultDto.forEachRound(
+                round -> printRacingProgress(round.carStates())
+        );
 
         printWinners(winners);
     }
@@ -48,8 +46,8 @@ public class ConsoleView implements View {
         for (CarDto carDto : carDtos) {
             printCarDistance(carDto);
         }
+        System.out.println();
     }
-
 
     private String readInputSafely() {
         try {
