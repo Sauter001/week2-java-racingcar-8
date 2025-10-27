@@ -23,10 +23,6 @@ public class Cars {
     }
 
     private List<Car> createCars(List<String> carNames) {
-        if (carNames.isEmpty()) {
-            throw new ListEmptyException("CarNames");
-        }
-
         checkCarNameDuplication(carNames);
         return carNames.stream().map(Car::new).toList();
     }
@@ -35,10 +31,6 @@ public class Cars {
         for (Car car : carList) {
             car.move();
         }
-    }
-
-    public int size() {
-        return carList.size();
     }
 
     public List<CarDto> getRaceResult() {

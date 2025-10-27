@@ -1,5 +1,6 @@
 package racingcar.parser;
 
+import racingcar.exception.common.ListEmptyException;
 import racingcar.exception.domain.CarNameEmptyException;
 
 import java.util.Arrays;
@@ -10,6 +11,7 @@ public class CarNameParser {
 
     public List<String> parseCars(String carsInput) {
         validateCarsFormat(carsInput);
+
         return Arrays.stream(carsInput.split(DELIMITER))
                 .map(String::trim)
                 .toList();
