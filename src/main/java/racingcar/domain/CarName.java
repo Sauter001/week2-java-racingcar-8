@@ -15,7 +15,7 @@ public class CarName {
     }
 
     private void validate(String name) {
-        if (Objects.isNull(name) || name.isEmpty()) {
+        if (name.isEmpty()) {
             throw new CarNameEmptyException();
         }
 
