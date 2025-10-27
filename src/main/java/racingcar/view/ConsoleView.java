@@ -35,6 +35,11 @@ public class ConsoleView implements View {
         printWinners(winners);
     }
 
+    @Override
+    public void closeInput() {
+        Console.close();
+    }
+
     private void printAllRound(List<RoundResultDto> roundResults) {
         for (RoundResultDto roundResultDto : roundResults) {
             printSingleRound(roundResultDto);

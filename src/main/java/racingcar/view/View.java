@@ -6,4 +6,6 @@ import racingcar.dto.RaceResultDto;
 public interface View {
     InputDto inputRacingInfo();
     void printRacingResult(RaceResultDto raceResultDto);
+
+    void closeInput();
 }

@@ -20,5 +20,6 @@ public class RacingController {
         Race race = new Race(cars, inputDto.round());
         RaceResult raceResults = race.start();
         view.printRacingResult(raceResults.toDto());
+        view.closeInput();
     }
 }
