@@ -132,18 +132,47 @@ jun : -----
 
 ## 폴더 구조
 ```text
-├───main
-│   └───java
-│       └───racingcar
-│           ├───controller
-│           ├───domain
-│           ├───dto
-│           ├───exception
-│           │   ├───common
-│           │   └───domain
-│           └───view
-└───test
-    └───java
-        └───racingcar
-            └───domain
+└───java
+    └───racingcar
+        │   Application.java
+        │
+        ├───controller
+        │       RacingController.java
+        │
+        ├───domain
+        │       Car.java
+        │       CarName.java
+        │       Cars.java
+        │       NumOfRounds.java
+        │       Race.java
+        │       RaceResult.java
+        │       RoundResult.java
+        │
+        ├───dto
+        │       CarDto.java
+        │       InputDto.java
+        │       RaceResultDto.java
+        │       RoundResultDto.java
+        │
+        ├───exception
+        │   │   ErrorMessages.java
+        │   │
+        │   ├───common
+        │   │       LengthInvalidException.java
+        │   │       ListEmptyException.java
+        │   │       NumberNotPositiveException.java
+        │   │
+        │   └───domain
+        │           CarNameAlreadyExistsException.java
+        │           CarNameLengthExceededException.java
+        │
+        ├───parser
+        │       CarNameParser.java
+        │       RoundInputParser.java
+        │
+        └───view
+                ConsoleView.java
+                View.java
+
+
 ```
